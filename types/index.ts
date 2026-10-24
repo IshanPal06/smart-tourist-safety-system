@@ -233,3 +233,43 @@ export interface ToastMessage {
   type: 'info' | 'success' | 'warning' | 'error' | 'sos';
   timestamp: number;
 }
+
+
+export interface MLPredictionResult {
+  risk_level: number;
+  risk_label: 'Low' | 'Medium' | 'High';
+  confidence: number;
+  probabilities: {
+    Low: number;
+    Medium: number;
+    High: number;
+  };
+  model_version: string;
+  factors_summary: string[];
+  disclaimer: string;
+  evaluated_at?: string;
+  service_available?: boolean;
+  source?: 'ml_service' | 'client_heuristic';
+  input_telemetry?: MLTelemetryInput;
+}
+
+export interface MLTelemetryInput {
+  latitude: number;
+  longitude: number;
+  hour: number;
+  day_of_week: number;
+  is_weekend: number;
+  crowd_density: number;
+  crime_rate: number;
+  incident_count: number;
+  police_distance: number;
+  hospital_distance: number;
+  weather_condition: number;
+  temperature: number;
+  rainfall: number;
+  humidity: number;
+  tourist_speed: number;
+  dwell_time: number;
+  lighting_condition: number;
+  location_type: number;
+}

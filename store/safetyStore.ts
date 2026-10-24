@@ -25,6 +25,8 @@ import { calculateTouristRisk, classifyIncident, findOptimalResponseUnit, detect
 import { evaluateGeofencePosition } from '@/services/geofence';
 import { generateIncidentId } from '@/lib/utils';
 import { verifyDigitalIdentity } from '@/services/blockchain';
+import { checkMLHealth, predictTouristRisk, buildTelemetryFromStore } from '@/services/mlService';
+import { MLPredictionResult, MLTelemetryInput } from '@/types';
 
 export interface DemoState {
   isPlaying: boolean;
@@ -69,6 +71,14 @@ interface SafetyStoreState {
   isOfflineCached: boolean;
   isDownloadingOffline: boolean;
   offlineDownloadProgress: number;
+
+  // ML Risk Prediction State
+  mlPrediction: MLPredictionResult | null;
+  isMlLoading: boolean;
+  mlError: string | null;
+  mlServiceStatus: 'unknown' | 'connected' | 'offline';
+  fetchMLRiskPrediction: (customTelemetry?: Partial<MLTelemetryInput>) => Promise<MLPredictionResult | null>;
+  checkMLStatus: () => Promise<boolean>;
 
   // Demo Automation State
   demo: DemoState;
@@ -130,6 +140,41 @@ interface SafetyStoreState {
 }
 
 export const useSafetyStore = create<SafetyStoreState>((set, get) => ({
+  checkMLStatus: async () => {
+    try {
+      const status = await checkMLHealth();
+      set({ mlServiceStatus: status.connected ? 'connected' : 'offline' });
+      return status.connected;
+    } catch {
+      set({ mlServiceStatus: 'offline' });
+      return false;
+    }
+  },
+
+  fetchMLRiskPrediction: async (customTelemetry) => {
+    set({ isMlLoading: true, mlError: null });
+    try {
+      const { tourist, incidents, emergencyUnits } = get();
+      const baseTelemetry = buildTelemetryFromStore(tourist, incidents, emergencyUnits);
+      const telemetry = customTelemetry ? { ...baseTelemetry, ...customTelemetry } : baseTelemetry;
+      const result = await predictTouristRisk(telemetry);
+      set({
+        mlPrediction: result,
+        isMlLoading: false,
+        mlError: null,
+        mlServiceStatus: 'connected',
+      });
+      return result;
+    } catch (err: any) {
+      const errMsg = err.message || 'ML Prediction Service Unavailable';
+      set({
+        isMlLoading: false,
+        mlError: errMsg,
+        mlServiceStatus: 'offline',
+      });
+      return null;
+    }
+  },
   tourist: initialTouristProfile,
   incidents: mockIncidents,
   emergencyUnits: mockEmergencyUnits,
@@ -150,6 +195,11 @@ export const useSafetyStore = create<SafetyStoreState>((set, get) => ({
   isOfflineCached: false,
   isDownloadingOffline: false,
   offlineDownloadProgress: 0,
+
+  mlPrediction: null,
+  isMlLoading: false,
+  mlError: null,
+  mlServiceStatus: 'unknown',
 
   demo: {
     isPlaying: false,

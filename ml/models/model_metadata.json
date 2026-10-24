@@ -1,0 +1,202 @@
+{
+  "model_name": "tourist_safety_random_forest",
+  "model_version": "1.0.0",
+  "algorithm": "RandomForestClassifier",
+  "framework": "scikit-learn",
+  "trained_at_utc": "2026-10-24T12:33:49.920484+00:00",
+  "input_features": [
+    "latitude",
+    "longitude",
+    "hour",
+    "day_of_week",
+    "is_weekend",
+    "crowd_density",
+    "crime_rate",
+    "incident_count",
+    "police_distance",
+    "hospital_distance",
+    "weather_condition",
+    "temperature",
+    "rainfall",
+    "humidity",
+    "tourist_speed",
+    "dwell_time",
+    "lighting_condition",
+    "location_type"
+  ],
+  "feature_count": 18,
+  "target_column": "risk_level",
+  "class_mapping": {
+    "0": "Low",
+    "1": "Medium",
+    "2": "High"
+  },
+  "class_labels": [
+    "Low",
+    "Medium",
+    "High"
+  ],
+  "hyperparameters": {
+    "n_estimators": 200,
+    "max_depth": 16,
+    "min_samples_split": 5,
+    "min_samples_leaf": 2,
+    "class_weight": "balanced",
+    "random_state": 42
+  },
+  "dataset_validation": {
+    "n_rows": 20000,
+    "n_cols": 20,
+    "total_nulls": 0,
+    "duplicates": 0,
+    "class_distribution_counts": {
+      "Low": 9000,
+      "Medium": 7000,
+      "High": 4000
+    },
+    "class_distribution_pct": {
+      "Low": 45.0,
+      "Medium": 35.0,
+      "High": 20.0
+    }
+  },
+  "evaluation": {
+    "group_kfold": {
+      "n_splits": 5,
+      "group_variable": "location_id",
+      "accuracy": 0.7392,
+      "macro_f1": 0.7331,
+      "weighted_f1": 0.738,
+      "classification_report": {
+        "Low": {
+          "precision": 0.8040816326530612,
+          "recall": 0.8317777777777777,
+          "f1-score": 0.8176952484980885,
+          "support": 9000.0
+        },
+        "Medium": {
+          "precision": 0.6361481481481481,
+          "recall": 0.6134285714285714,
+          "f1-score": 0.6245818181818181,
+          "support": 7000.0
+        },
+        "High": {
+          "precision": 0.7626903553299492,
+          "recall": 0.75125,
+          "f1-score": 0.756926952141058,
+          "support": 4000.0
+        },
+        "accuracy": 0.73925,
+        "macro avg": {
+          "precision": 0.7343067120437196,
+          "recall": 0.7321521164021164,
+          "f1-score": 0.7330680062736549,
+          "support": 20000.0
+        },
+        "weighted avg": {
+          "precision": 0.7370266576117191,
+          "recall": 0.73925,
+          "f1-score": 0.7379518886159878,
+          "support": 20000.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          7486,
+          1485,
+          29
+        ],
+        [
+          1800,
+          4294,
+          906
+        ],
+        [
+          24,
+          971,
+          3005
+        ]
+      ]
+    },
+    "holdout_test": {
+      "test_size": 0.2,
+      "accuracy": 0.7502,
+      "macro_f1": 0.7476,
+      "classification_report": {
+        "Low": {
+          "precision": 0.8410017472335469,
+          "recall": 0.8022222222222222,
+          "f1-score": 0.8211543929485356,
+          "support": 1800.0
+        },
+        "Medium": {
+          "precision": 0.6482958665699783,
+          "recall": 0.6385714285714286,
+          "f1-score": 0.6433969053616408,
+          "support": 1400.0
+        },
+        "High": {
+          "precision": 0.7334070796460177,
+          "recall": 0.82875,
+          "f1-score": 0.778169014084507,
+          "support": 800.0
+        },
+        "accuracy": 0.75025,
+        "macro avg": {
+          "precision": 0.740901564483181,
+          "recall": 0.7565145502645502,
+          "f1-score": 0.7475734374648946,
+          "support": 4000.0
+        },
+        "weighted avg": {
+          "precision": 0.7520357554837921,
+          "recall": 0.75025,
+          "f1-score": 0.7503421965203168,
+          "support": 4000.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          1444,
+          349,
+          7
+        ],
+        [
+          272,
+          894,
+          234
+        ],
+        [
+          1,
+          136,
+          663
+        ]
+      ]
+    }
+  },
+  "feature_importances": {
+    "incident_count": 0.2184,
+    "crime_rate": 0.1064,
+    "hour": 0.0999,
+    "lighting_condition": 0.0995,
+    "crowd_density": 0.088,
+    "longitude": 0.0514,
+    "police_distance": 0.0491,
+    "latitude": 0.0468,
+    "hospital_distance": 0.0425,
+    "temperature": 0.0423,
+    "dwell_time": 0.0354,
+    "humidity": 0.0351,
+    "tourist_speed": 0.0321,
+    "day_of_week": 0.016,
+    "location_type": 0.0137,
+    "rainfall": 0.0101,
+    "weather_condition": 0.0096,
+    "is_weekend": 0.0036
+  },
+  "provenance_notes": {
+    "dataset_type": "Synthetic (calibrated against NCRB city context and IMD Kolkata normals)",
+    "leakage_prevention": "location_id excluded from feature set; GroupKFold cross-validation used to test cross-location spatial generalization.",
+    "disclaimer": "This model was trained on synthetic data generated via heuristic rules. Evaluation metrics measure how effectively the Random Forest recovers the underlying synthetic latent score rules, and must not be presented as proof of real-world safety ground truth."
+  }
+}

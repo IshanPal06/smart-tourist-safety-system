@@ -24,6 +24,8 @@ import {
   WifiOff
 } from 'lucide-react';
 import { getRiskColor } from '@/lib/utils';
+import { TouristMLPredictionCard } from '@/components/tourist/TouristMLPredictionCard';
+import { InteractiveTouristMap } from '@/components/maps/InteractiveTouristMap';
 
 export const TouristHome: React.FC = () => {
   const { tourist, setTouristLocation } = useSafetyStore();
@@ -80,6 +82,20 @@ export const TouristHome: React.FC = () => {
           <span>Map</span>
           <ArrowRight className="h-3 w-3" />
         </Link>
+      </div>
+
+      {/* Prominent Interactive Kolkata Tourist Safety Map */}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between px-1">
+          <div className="flex items-center space-x-2">
+            <Compass className="h-4 w-4 text-cyan-400" />
+            <h3 className="text-xs font-black uppercase tracking-wider text-slate-200">
+              Interactive Kolkata Safety Map
+            </h3>
+          </div>
+          <span className="text-[10px] font-mono text-cyan-400">OpenStreetMap • Leaflet</span>
+        </div>
+        <InteractiveTouristMap height="480px" />
       </div>
 
       {/* Main Safety Status & Circular Gauge Card */}
@@ -252,6 +268,9 @@ export const TouristHome: React.FC = () => {
           </span>
         </div>
       </div>
+
+      {/* Real-time ML Safety Risk Prediction */}
+      <TouristMLPredictionCard />
 
       {/* AI Safety Summary Card */}
       <div className="rounded-2xl border border-cyan-500/30 bg-gradient-to-r from-navy-950 via-cyan-950/20 to-navy-950 p-4 shadow-lg space-y-3">

@@ -1,0 +1,64 @@
+VALIDATION REPORT
+=================
+Total rows: 20000
+Total columns: 20
+Unique locations: 35
+Missing values: 0
+Duplicate rows: 0
+Field provenance (of 20 columns): {'Synthetic': 16, 'Mixed': 4}
+Official fields used as-is: 0 | Derived-from-official fields: 0 | Mixed (approximate real geography): 4 (latitude, longitude, police_distance, hospital_distance) | Synthetic: 16
+(Official statistics were used only as calibration/context for crime_rate, incident_count, weather and lighting.)
+
+Risk-level distribution (%):
+risk_level
+0    45.0
+1    35.0
+2    20.0
+Risk-score thresholds (latent units): low<0.958, medium<2.302, else high
+
+Weather distribution (%):
+weather_condition
+0    61.87
+1    27.56
+2     8.67
+3     1.90
+Rows per hour (min/max): 418 / 1180
+Rows per location (min/median/max): 175 / 603 / 816
+
+[PASS] lat in [22.4, 22.7]
+[PASS] lon in [88.2, 88.6]
+[PASS] hour 0-23
+[PASS] day_of_week 0-6
+[PASS] is_weekend consistent with day_of_week
+[PASS] crowd_density 0.3-300
+[PASS] crime_rate 0-1
+[PASS] incident_count >= 0
+[PASS] distances > 0
+[PASS] weather_condition in 0-3
+[PASS] temperature 8-44
+[PASS] rainfall >= 0 and 0 unless rain/storm
+[PASS] humidity 0-100
+[PASS] tourist_speed 0-6.5
+[PASS] dwell_time 1-300
+[PASS] lighting in 0-2
+[PASS] location_type in 0-6
+[PASS] risk_level in 0-2, all classes present
+[PASS] poor/artificial lighting never in daylight rows (hours 10-15)
+[PASS] no daylight code at hours 0-3 or 22-23
+
+Max |corr| of any single feature with target: incident_count = 0.542 (no single-feature leakage)
+Risk mix for hour>=22 rows (%): {0: 9.0, 1: 41.7, 2: 49.3}  (late night is NOT automatically high risk)
+Share of high-risk rows by lighting code (%): {0: 8.7, 1: 32.6, 2: 60.6}
+
+Random Forest sanity check (random 80/20 split): accuracy=0.750 macro-F1=0.746
+Random Forest, 5-fold GroupKFold by location_id: accuracy=0.730 macro-F1=0.720
+Top feature importances:
+incident_count        0.173
+crime_rate            0.100
+crowd_density         0.082
+hour                  0.080
+lighting_condition    0.079
+longitude             0.057
+police_distance       0.056
+latitude              0.053
+Note: scores measure how well a model recovers MY synthetic labelling rule, not real-world safety.

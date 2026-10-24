@@ -1,0 +1,36 @@
+location_id,location_name,latitude,longitude,location_type,coordinate_quality,synthetic_popularity,synthetic_crime_index,synthetic_incident_lambda,synthetic_poor_light_prob,synthetic_crowd_profile,synthetic_dwell_multiplier
+1,Park Street,22.5534,88.3524,5,Approximate landmark centroid (unverified),0.95,0.42,2.4,0.05,evening_attr,1.2
+2,Victoria Memorial,22.5448,88.3426,0,Approximate landmark centroid (unverified),1.0,0.28,1.0,0.12,day_attr,2.0
+3,New Market,22.5603,88.3512,1,Approximate landmark centroid (unverified),0.95,0.55,3.3,0.08,market,1.0
+4,Esplanade,22.5647,88.3518,2,Approximate landmark centroid (unverified),0.85,0.52,2.9,0.1,transport,0.8
+5,Howrah Bridge (Kolkata side),22.5851,88.3468,0,Approximate landmark centroid (unverified),0.8,0.5,2.4,0.12,transport,0.4
+6,Howrah Railway Station,22.5839,88.3426,2,Approximate landmark centroid (unverified),1.0,0.62,3.8,0.12,transport,0.6
+7,Prinsep Ghat,22.5557,88.3326,4,Approximate landmark centroid (unverified),0.6,0.4,1.5,0.28,park,1.2
+8,Eco Park,22.603,88.461,4,Approximate landmark centroid (unverified),0.7,0.22,0.6,0.35,park,2.5
+9,Salt Lake Stadium area,22.5697,88.4097,4,Approximate landmark centroid (unverified),0.5,0.18,0.5,0.15,park,0.8
+10,Indian Museum,22.5578,88.3515,0,Approximate landmark centroid (unverified),0.75,0.3,1.2,0.08,day_attr,1.6
+11,Dakshineswar Kali Temple,22.6551,88.3577,3,Approximate landmark centroid (unverified),0.95,0.38,1.7,0.2,religious,1.3
+12,Kalighat Temple,22.52,88.3426,3,Approximate landmark centroid (unverified),0.95,0.5,2.5,0.18,religious,1.1
+13,College Street,22.5755,88.364,1,Approximate landmark centroid (unverified),0.8,0.44,2.0,0.1,market,0.8
+14,Maidan (Brigade Parade Ground),22.56,88.345,4,Approximate landmark centroid (unverified),0.8,0.35,1.4,0.45,park,1.0
+15,St. Paul's Cathedral,22.5446,88.347,3,Approximate landmark centroid (unverified),0.5,0.2,0.6,0.1,day_attr,0.9
+16,Science City,22.5398,88.3965,0,Approximate landmark centroid (unverified),0.7,0.15,0.5,0.1,day_attr,2.2
+17,Birla Planetarium,22.5453,88.3504,0,Approximate landmark centroid (unverified),0.45,0.22,0.6,0.08,day_attr,1.0
+18,Rabindra Sarobar,22.5115,88.357,4,Approximate landmark centroid (unverified),0.6,0.28,1.0,0.4,park,1.3
+19,Sealdah Station,22.5676,88.3702,2,Approximate landmark centroid (unverified),1.0,0.65,4.0,0.14,transport,0.6
+20,Belur Math,22.6325,88.356,3,Approximate landmark centroid (unverified),0.65,0.15,0.5,0.15,religious,1.4
+21,Marble Palace,22.5831,88.3613,0,Approximate landmark centroid (unverified),0.3,0.3,0.8,0.18,day_attr,1.0
+22,Jorasanko Thakur Bari,22.5838,88.3588,0,Approximate landmark centroid (unverified),0.45,0.32,1.0,0.15,day_attr,1.4
+23,Burrabazar,22.581,88.359,1,Approximate landmark centroid (unverified),0.9,0.58,3.5,0.22,market,0.9
+24,Gariahat Market,22.5172,88.3665,1,Approximate landmark centroid (unverified),0.8,0.42,2.0,0.09,market,0.9
+25,BBD Bagh (Dalhousie),22.5726,88.3508,5,Approximate landmark centroid (unverified),0.6,0.38,1.6,0.06,commercial,0.6
+26,Shyambazar Five-Point Crossing,22.601,88.3737,5,Approximate landmark centroid (unverified),0.55,0.45,1.8,0.15,commercial,0.6
+27,Kolkata Airport (NSCBI),22.6547,88.4467,2,Approximate landmark centroid (unverified),0.75,0.2,0.9,0.04,transport,0.6
+28,Eden Gardens,22.5646,88.3433,0,Approximate landmark centroid (unverified),0.6,0.3,1.0,0.3,day_attr,1.2
+29,Alipore Zoological Garden,22.5382,88.3333,0,Approximate landmark centroid (unverified),0.65,0.18,0.5,0.12,day_attr,2.0
+30,Nakhoda Masjid,22.5808,88.3606,3,Approximate landmark centroid (unverified),0.4,0.45,1.7,0.2,religious,0.8
+31,City Centre Salt Lake,22.5865,88.41,1,Approximate landmark centroid (unverified),0.8,0.15,0.6,0.03,market,1.2
+32,Ballygunge (residential),22.53,88.365,6,Approximate landmark centroid (unverified),0.25,0.2,0.6,0.15,resid,1.0
+33,Tollygunge (residential),22.495,88.347,6,Approximate landmark centroid (unverified),0.2,0.3,1.1,0.28,resid,1.0
+34,Behala (residential),22.498,88.317,6,Approximate landmark centroid (unverified),0.15,0.32,1.2,0.38,resid,1.0
+35,New Town Action Area I,22.577,88.477,5,Approximate landmark centroid (unverified),0.35,0.15,0.5,0.3,commercial,0.8
